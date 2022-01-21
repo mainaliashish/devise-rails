@@ -1,0 +1,21 @@
+<% content_for :head do %>
+  <%= javascript_import_module_tag "rich_text" %>
+<% end %>
+
+<%= form_with(model: post) do |form| %>
+  <%= render partial: 'shared/errors', locals: { obj: post, message: 'Post' } %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :content, style: "display: block" %>
+    <%= form.rich_text_area :content %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
