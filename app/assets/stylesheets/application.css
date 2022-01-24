@@ -26,3 +26,26 @@
   max-width: 40%;
   height: auto;
 }
+
+.login-button {
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 0.7rem 0.9rem;
+    margin: 0.5rem 0;
+    background: lightblue;
+    width: 44px;
+    text-decoration: none;
+}
+
+
+.all-post {
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 0.7rem 0.9rem;
+    margin: 0.5rem 0;
+    background: salmon;
+    width: 89px;
+    text-decoration: none;
+}

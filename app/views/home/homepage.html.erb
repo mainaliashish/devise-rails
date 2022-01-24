@@ -6,5 +6,7 @@
                       data: { turbo_method: :delete,
                               turbo_confirm: "Are you sure?"} %>
 <% else %>
-<%= link_to "Login", new_user_session_path %>
+<%= link_to "Login", new_user_session_path, class: "login-button" %>
 <% end %>
+
+<%= link_to "All Posts", posts_path, class: "all-post" %>
