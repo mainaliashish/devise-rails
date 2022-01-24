@@ -73,6 +73,7 @@ group :test do
 end
 
 gem 'devise'
+gem 'friendly_id', '~> 5.4.0'
 
 # Added by user
 group :development do
