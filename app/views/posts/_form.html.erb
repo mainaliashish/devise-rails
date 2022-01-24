@@ -2,6 +2,7 @@
   <%= javascript_import_module_tag "rich_text" %>
 <% end %>
 
+
 <%= form_with(model: post) do |form| %>
   <%= render partial: 'shared/errors', locals: { obj: post, message: 'Post' } %>
 

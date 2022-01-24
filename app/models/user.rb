@@ -6,4 +6,6 @@ class User < ApplicationRecord
          :confirmable
 
   enum role: { user: 0, admin: 1 }
+
+  has_many :posts, -> { order(created_at: :desc) }, dependent: :destroy
 end
