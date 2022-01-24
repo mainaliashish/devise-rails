@@ -1,4 +1,6 @@
 <h1>Posts</h1>
+<%= button_to "Logout", destroy_user_session_path, method: :delete %>
+<%= link_to "New post", new_post_path %>
 
 <div id="posts">
   <% @posts.each do |post| %>
@@ -9,4 +11,3 @@
   <% end %>
 </div>
 
-<%= link_to "New post", new_post_path %>
