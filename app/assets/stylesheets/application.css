@@ -21,3 +21,8 @@
 .notice {
   color: green
 }
+
+.trix-content img {
+  max-width: 40%;
+  height: auto;
+}
