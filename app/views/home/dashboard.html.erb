@@ -1,7 +1,8 @@
 <h3>Welcome to Dashboard</h3>
 
 <p>Full Name : <%= @user.first_name %> <%= @user.last_name %></p>
-<%= image_tag @user.profile_photo.variant(resize_to_limit: [250, 200]) %>
+<%= image_tag(@user.profile_photo.variant(resize_to_limit: [250, 200])) if @user.profile_photo.attached? %>
+<%= image_tag('http://placehold.jp/150x150.png') if !@user.profile_photo.attached? %>
 
 <p>Currently You have total <%= @user.posts.count %> posts.</p>
 <%= link_to "All Posts", posts_path, class: "all-post" %>
