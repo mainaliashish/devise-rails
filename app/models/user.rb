@@ -9,4 +9,8 @@ class User < ApplicationRecord
 
   has_many :posts, -> { order(created_at: :desc) }, dependent: :destroy
   has_one_attached :profile_photo, dependent: :destroy
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

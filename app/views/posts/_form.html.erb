@@ -1,5 +1,6 @@
 <% content_for :head do %>
   <%= javascript_import_module_tag "rich_text" %>
+  <%= javascript_import_module_tag "image_preview" %>
 <% end %>
 
 
@@ -19,7 +20,7 @@
   <br/>
   <div>
     <%= image_tag(post.post_photo.url, class: "post-photo", id: "old-image") if post.post_photo? %>
-    <%= image_tag('http://placehold.jp/250x250.png', class: "post-photo", id: "old-image") if !post.post_photo? %>
+    <%= image_tag('http://placehold.jp/150x150.png', type: "post-photo", id: "old-image") if !post.post_photo? %>
   </div>
   <div>
     <%= form.label :post_photo, style: "display: block" %>
