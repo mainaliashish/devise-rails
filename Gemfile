@@ -72,10 +72,11 @@ group :test do
   gem "webdrivers"
 end
 
+# Added by user
+
 gem 'devise'
 gem 'friendly_id', '~> 5.4.0'
-
-# Added by user
+gem "mini_magick"
 group :development do
   gem 'hirb-unicode'
   gem 'pry'

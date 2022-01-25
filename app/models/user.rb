@@ -8,4 +8,5 @@ class User < ApplicationRecord
   enum role: { user: 0, admin: 1 }
 
   has_many :posts, -> { order(created_at: :desc) }, dependent: :destroy
+  has_one_attached :profile_photo, dependent: :destroy
 end
