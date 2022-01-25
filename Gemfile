@@ -76,7 +76,9 @@ end
 
 gem 'devise'
 gem 'friendly_id', '~> 5.4.0'
-gem "mini_magick"
+gem 'mini_magick'
+gem 'carrierwave', '~> 2.0'
+
 group :development do
   gem 'hirb-unicode'
   gem 'pry'

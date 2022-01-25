@@ -56,7 +56,8 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content).merge(user: current_user)
+    attributes = %i[title content post_photo]
+    params.require(:post).permit(attributes).merge(user: current_user)
   end
 
   def require_same_user_or_admin
