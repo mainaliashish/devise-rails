@@ -74,10 +74,13 @@ end
 
 # Added by user
 
+gem 'carrierwave', '~> 2.0'
 gem 'devise'
 gem 'friendly_id', '~> 5.4.0'
 gem 'mini_magick'
-gem 'carrierwave', '~> 2.0'
+gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
 
 group :development do
   gem 'hirb-unicode'
