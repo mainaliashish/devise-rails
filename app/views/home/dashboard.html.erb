@@ -11,6 +11,6 @@
 <%= link_to "All Posts", posts_path, class: "all-post" %>
 <%= link_to "Update Profile", edit_user_registration_path %>
 <div id="posts">
-  <%= render partial: 'posts/post', locals: { posts: @user.posts } %>
+  <%= render partial: 'home/posts', locals: { posts: @user.posts } %>
 </div>
 

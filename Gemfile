@@ -84,6 +84,7 @@ gem 'omniauth-rails_csrf_protection'
 gem 'rolify'
 
 group :development do
+  gem 'better_errors'
   gem 'hirb-unicode'
   gem 'pry'
 end

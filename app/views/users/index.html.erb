@@ -8,10 +8,6 @@
 <% end %>
 
 <div id="posts">
-  <% @users.each do |user| %>
-    <%= render user %>
-    <p>
-    </p>
-  <% end %>
+  <%= render partial: 'users/user', locals: { users: @users } %>
 </div>
 

@@ -1,4 +1,4 @@
-<div id="<%= dom_id user %>">
+<div id="users">
   <table>
     <thead>
       <tr>
@@ -6,9 +6,11 @@
         <th>Email</th>
         <th>Roles</th>
         <th>Username</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
+    <% users.each do |user| %>
       <tr>
         <td><%= user.full_name %></td>
         <td><%= user.email %></td>
@@ -16,7 +18,16 @@
         <%= user.roles_name %>
         </td>
         <td><%= user.username %></td> 
+        <td>
+          <% if can? :edit, user %>
+            <%= link_to 'Edit', '#' %>
+          <% end %>
+          <% if can? :delete, user %>
+           <%= link_to 'Delete', '#' %>
+          <% end %>
+        </td>
       </tr>
+    <% end %>
     </tbody>
   </table>
 </div>
