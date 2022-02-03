@@ -21,6 +21,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.user.add_role :creator
     if @post.save
       flash[:notice] = 'Post Was Successfully Created!'
       redirect_to post_path(@post)
@@ -30,6 +31,7 @@ class PostsController < ApplicationController
   end
 
   def update
+    @post.user.add_role :editor
     if @post.update(post_params)
       flash[:alert] = 'Post Was Updated Successfully!'
       redirect_to post_path(@post)

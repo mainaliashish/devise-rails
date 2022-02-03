@@ -12,7 +12,7 @@ class User < ApplicationRecord
   after_create :assign_default_role
 
   def assign_default_role
-    add_role(:newuser) if roles.blank?
+    add_role(:user) if roles.blank?
   end
 
   def full_name
