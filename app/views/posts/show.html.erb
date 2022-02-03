@@ -1,9 +1,15 @@
-<%= render @post %>
+<%= @post.title %>
+<%= @post.content %>
+<%= image_tag(@post.post_photo.url, class: "post-photo") if @post.post_photo? %>
+<%= image_tag('http://placehold.jp/250x250.png', class: "post-photo") if !@post.post_photo? %>    
+<%= @post.user.username %> 
 
 <% if user_signed_in? %>
-  <% if current_user == @post.user || current_user.admin? %>
+  <% if can? :edit, @post %>
     <div>
       <%= link_to "Edit this post", edit_post_path(@post) %> |
+    <% end %>
+    <% if can? :delete, @post %>
       <%= button_to "Destroy this post", @post, method: :delete %>
     </div>
   <% end %>

@@ -20,10 +20,10 @@
         <td><%= user.username %></td> 
         <td>
           <% if can? :edit, user %>
-            <%= link_to 'Edit', '#' %>
+            <%= link_to 'Edit', edit_user_path(user) %>
           <% end %>
           <% if can? :delete, user %>
-           <%= link_to 'Delete', '#' %>
+           <%= link_to 'Delete', user, data: { turbo_method: :delete } %>
           <% end %>
         </td>
       </tr>
