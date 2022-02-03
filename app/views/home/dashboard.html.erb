@@ -5,13 +5,12 @@
 <%= image_tag('http://placehold.jp/150x150.png') if !@user.profile_photo.attached? %>
 
 <p>Currently You have total <%= @user.posts.count %> posts.</p>
+
+<p>Your role is <%= @user.roles_name[0] %><br />
+
 <%= link_to "All Posts", posts_path, class: "all-post" %>
 <%= link_to "Update Profile", edit_user_registration_path %>
 <div id="posts">
-  <% @user.posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
-  <% end %>
+  <%= render partial: 'posts/post', locals: { posts: @user.posts } %>
 </div>
+

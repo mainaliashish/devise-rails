@@ -1,0 +1,22 @@
+<div id="<%= dom_id user %>">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Roles</th>
+        <th>Username</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= user.full_name %></td>
+        <td><%= user.email %></td>
+        <td>
+        <%= user.roles_name %>
+        </td>
+        <td><%= user.username %></td> 
+      </tr>
+    </tbody>
+  </table>
+</div>
