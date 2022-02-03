@@ -1,7 +1,11 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_post, only: %i[show edit update destroy]
-  before_action :require_same_user_or_admin, except: %i[index new create show]
+  load_and_authorize_resource
+
+  def current_ability
+    @current_ability ||= PostAbility.new(current_user)
+  end
 
   def index
     @posts = Post.order(created_at: :desc)
@@ -49,12 +53,5 @@ class PostsController < ApplicationController
   def post_params
     attributes = %i[title content post_photo]
     params.require(:post).permit(attributes).merge(user: current_user)
-  end
-
-  def require_same_user_or_admin
-    return if current_user == @post.user || current_user.admin?
-
-    flash[:notice] = 'You can only perform action on your own articles.'
-    redirect_to posts_path
   end
 end
