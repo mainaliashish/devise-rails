@@ -1,14 +1,19 @@
 class User < ApplicationRecord
+  rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :omniauthable, omniauth_providers: %i[google_oauth2 github]
 
-  enum role: { user: 0, admin: 1 }
-
   has_many :posts, -> { order(created_at: :desc) }, dependent: :destroy
   has_one_attached :profile_photo, dependent: :destroy
+
+  after_create :assign_default_role
+
+  def assign_default_role
+    add_role(:newuser) if roles.blank?
+  end
 
   def full_name
     "#{first_name} #{last_name}"
