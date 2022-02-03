@@ -73,7 +73,7 @@ group :test do
 end
 
 # Added by user
-
+gem 'cancancan'
 gem 'carrierwave', '~> 2.0'
 gem 'devise'
 gem 'friendly_id', '~> 5.4.0'
