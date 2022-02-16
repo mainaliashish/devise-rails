@@ -1,4 +1,4 @@
-module DeviseHelpers
+module DeviseRequestSpecHelpers
   include Warden::Test::Helpers
 
   def sign_in(resource_or_scope, resource = nil)

@@ -1,7 +1,9 @@
+require 'faker'
 FactoryBot.define do
-  factory :post, class: 'Post' do
+  factory :post do
     title { Faker::Lorem.sentence(word_count: 5) }
-    content { Faker::Lorem.paragraph_by_chars(number: 256) }
+    content { Faker::Lorem.sentence(word_count: 20) }
+    slug { Faker::Internet.slug }
     user
   end
 end
