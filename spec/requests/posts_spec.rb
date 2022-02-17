@@ -59,4 +59,16 @@ RSpec.describe 'Posts', type: :request do
       expect(response).to have_http_status(:unprocessable_entity)
     end
   end
+
+  context 'Post #destroy' do
+    it 'should destroy a post' do
+      post posts_path, params: { post: attributes_for(:post) }
+      delete post_path(Post.first.slug)
+      expect(response).to have_http_status(:found)
+    end
+    it 'should not delete post if slug invalid' do
+      slug = 'xyz'
+      expect { delete post_path(slug) }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
 end
