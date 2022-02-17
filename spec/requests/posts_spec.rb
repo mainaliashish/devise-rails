@@ -41,4 +41,22 @@ RSpec.describe 'Posts', type: :request do
       expect { get post_path(slug) }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
+
+  context 'Post #update' do
+    it 'should update a post' do
+      post posts_path, params: { post: attributes_for(:post) }
+      put post_path(Post.first.slug), params: { post: attributes_for(:post) }
+      expect(response).to have_http_status(:found)
+    end
+    it 'should update a post with no title' do
+      post posts_path, params: { post: attributes_for(:post) }
+      put post_path(Post.first.slug), params: { post: attributes_for(:post, title: nil) }
+      expect(response).to have_http_status(:unprocessable_entity)
+    end
+    it 'should update a post with no content' do
+      post posts_path, params: { post: attributes_for(:post) }
+      put post_path(Post.first.slug), params: { post: attributes_for(:post, content: nil) }
+      expect(response).to have_http_status(:unprocessable_entity)
+    end
+  end
 end

@@ -3,7 +3,8 @@ class PostAbility
 
   def initialize(user)
     user ||= User.new
-    can :edit, Post, user_id: user.id
+    # can :edit, Post, user_id: user.id
+    can :manage, Post, user_id: user.id
     can :create, Post
     can :read, :all
     return unless user.has_role? :admin

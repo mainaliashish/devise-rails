@@ -4,7 +4,6 @@ class UserAbility
   def initialize(user)
     user ||= User.new
     can :edit, User, id: user.id
-    can :manage, Post, user_id: user.id
     can :read, :all
     return unless user.has_role? :admin
 

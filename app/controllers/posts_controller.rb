@@ -36,7 +36,7 @@ class PostsController < ApplicationController
       flash[:alert] = 'Post Was Updated Successfully!'
       redirect_to post_path(@post)
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
