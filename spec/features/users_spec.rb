@@ -15,4 +15,31 @@ RSpec.describe 'User Features' do
     click_on('Sign up')
     expect(page).to have_content('Welcome! You have signed up successfully.')
   end
+
+  feature 'should be able to login user' do
+    let(:user) { create(:user) }
+    it 'should login and logout user to the app' do
+      fill_in 'Email',	with: user.email
+      fill_in 'Password',	with: user.password
+      check('Remember me')
+      click_on('Login')
+      expect(page).to have_content('Signed in successfully.')
+      click_on('Logout')
+      expect(page).to have_content('Logged out successfully.')
+    end
+
+    it 'should not login without email' do
+      fill_in 'Email',	with: nil
+      fill_in 'Password',	with: user.password
+      click_on('Login')
+      expect(page).to have_content('Invalid Email or password.')
+    end
+
+    it 'should not login without password' do
+      fill_in 'Email',	with: user.email
+      fill_in 'Password',	with: nil
+      click_on('Login')
+      expect(page).to have_content('Invalid Email or password.')
+    end
+  end
 end

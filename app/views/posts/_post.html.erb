@@ -23,7 +23,7 @@
             <% if can? :edit, post %>
               <%= link_to "Edit", edit_post_path(post) %> 
             <% end %>
-            <%= link_to "Show", post %> 
+            <%= link_to "Show", post, class: 'show-post' %> 
             <% if can? :destroy, post %>
               <%= link_to "Destroy", post, data: { turbo_method: :delete }%>
             <% end %>
