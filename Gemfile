@@ -86,6 +86,7 @@ group :development do
   gem 'better_errors'
   gem 'factory_bot_rails', '~> 6.2.0'
   gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
+  gem 'fuubar'
   gem 'hirb-unicode'
   gem 'pry'
   gem 'rspec-rails', '~> 5.1.0'
