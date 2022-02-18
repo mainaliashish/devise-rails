@@ -7,33 +7,36 @@ RSpec.describe 'Posts', type: :request do
     sign_in user
   end
 
-  describe 'GET #index' do
-    before(:each) { get posts_path }
+  context 'GET #index' do
     it 'is a success' do
+      get posts_path
       expect(response).to have_http_status(:ok)
     end
   end
 
+  def post_params(attributes)
+    post posts_path, params: { post: attributes }
+  end
+
   context 'Post #create' do
-    it 'should creat a post' do
-      post posts_path, params: { post: attributes_for(:post) }
+    it 'should create a post' do
+      post_params attributes_for(:post)
       expect(response).to have_http_status(:found)
     end
     it 'should create a post without title' do
-      post posts_path, params: { post: attributes_for(:post, title: nil) }
+      post_params attributes_for(:post, title: nil)
       expect(response).to have_http_status(:unprocessable_entity)
     end
     it 'should create a post without content' do
-      post posts_path, params: { post: attributes_for(:post, content: nil) }
+      post_params attributes_for(:post, content: nil)
       expect(response).to have_http_status(:unprocessable_entity)
     end
   end
 
   context 'Post #show' do
     it 'should show a post with valid slug' do
-      post posts_path, params: { post: attributes_for(:post) }
-      post = Post.first
-      get post_path(post.slug)
+      post_params attributes_for(:post)
+      get post_path(Post.first.slug)
       expect(response).to have_http_status(:ok)
     end
     it 'should not show a post if slug invalid' do
@@ -42,27 +45,34 @@ RSpec.describe 'Posts', type: :request do
     end
   end
 
+  def update_params(slug, attributes)
+    put post_path(slug), params: { post: attributes }
+  end
+
   context 'Post #update' do
+    before(:each) do
+      post_params attributes_for(:post)
+    end
     it 'should update a post' do
-      post posts_path, params: { post: attributes_for(:post) }
-      put post_path(Post.first.slug), params: { post: attributes_for(:post) }
+      post_params attributes_for(:post)
+      update_params Post.first.slug, attributes_for(:post)
       expect(response).to have_http_status(:found)
     end
     it 'should update a post with no title' do
-      post posts_path, params: { post: attributes_for(:post) }
-      put post_path(Post.first.slug), params: { post: attributes_for(:post, title: nil) }
+      post_params attributes_for(:post)
+      update_params Post.first.slug, attributes_for(:post, title: nil)
       expect(response).to have_http_status(:unprocessable_entity)
     end
     it 'should update a post with no content' do
-      post posts_path, params: { post: attributes_for(:post) }
-      put post_path(Post.first.slug), params: { post: attributes_for(:post, content: nil) }
+      post_params attributes_for(:post)
+      update_params Post.first.slug, attributes_for(:post, content: nil)
       expect(response).to have_http_status(:unprocessable_entity)
     end
   end
 
   context 'Post #destroy' do
     it 'should destroy a post' do
-      post posts_path, params: { post: attributes_for(:post) }
+      post_params attributes_for(:post)
       delete post_path(Post.first.slug)
       expect(response).to have_http_status(:found)
     end
