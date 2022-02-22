@@ -1,0 +1,13 @@
+<h1>Posts</h1>
+<% if user_signed_in? %>
+  <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+  <%= link_to "New post", new_post_path %>
+  <%= link_to "Dashboard", dashboard_path %>
+<% else %>
+  <%= link_to "Login", new_user_session_path, class: "login-button" %>
+<% end %>
+
+<div id="posts">
+  <%= render partial: 'users/user', locals: { users: @users } %>
+</div>
+
