@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
+  root "home#homepage"
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' } do
+    member do
+      get 'users/edit/:id', to: 'users#edit', as: :edit_user
+      get 'users/delete/:id', to: 'users#delete'
+    end
+  end
   resources :posts
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :users
 
-  # Defines the root path route ("/")
-  root "posts#index"
+  get "dashboard", to: "home#dashboard", as: :dashboard
 end

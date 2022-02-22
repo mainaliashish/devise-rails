@@ -1,0 +1,13 @@
+<h3>Welcome to the HomePage</h3>
+
+<% if user_signed_in? %>
+<p>Welcome <%= current_user.first_name %> </p>
+<%= link_to "Logout", destroy_user_session_path, 
+                      data: { turbo_method: :delete,
+                              turbo_confirm: "Are you sure?"} %>
+<% else %>
+<%= link_to "Login", new_user_session_path, class: "login-button" %>
+<% end %>
+
+<%= link_to "All Posts", posts_path, class: "all-post" %>
+<%= link_to "All Users", users_path, class: "all-post" %>
