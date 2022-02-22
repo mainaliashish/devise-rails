@@ -1,6 +1,8 @@
 <% content_for :head do %>
   <%= javascript_import_module_tag "rich_text" %>
+  <%= javascript_import_module_tag "image_preview" %>
 <% end %>
+
 
 <%= form_with(model: post) do |form| %>
   <%= render partial: 'shared/errors', locals: { obj: post, message: 'Post' } %>
@@ -13,6 +15,16 @@
   <div>
     <%= form.label :content, style: "display: block" %>
     <%= form.rich_text_area :content %>
+  </div>
+
+  <br/>
+  <div>
+    <%= image_tag(post.post_photo.url, class: "post-photo", id: "old-image") if post.post_photo? %>
+    <%= image_tag('http://placehold.jp/150x150.png', type: "post-photo", id: "old-image") if !post.post_photo? %>
+  </div>
+  <div>
+    <%= form.label :post_photo, style: "display: block" %>
+    <%= form.file_field :post_photo, id: "pictureInput" %>
   </div>
 
   <div>

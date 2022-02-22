@@ -1,0 +1,34 @@
+<div id="posts">
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Username</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% posts.each do |post| %>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= post.content %></td>
+        <td>
+          <%= image_tag(post.post_photo.url, class: "post-photo") if post.post_photo? %>
+          <%= image_tag('http://placehold.jp/250x250.png', class: "post-photo") if !post.post_photo? %>
+        </td>
+        <td><%= post.user.username %></td> 
+        <td width="20%">
+        <% if can? :edit, post %>
+          <%= link_to "Edit", edit_post_path(post) %> 
+        <% end %>
+        <% if can? :delete, post %>
+          <%= link_to "Destroy", post, data: { turbo_method: :delete }%>
+        <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
