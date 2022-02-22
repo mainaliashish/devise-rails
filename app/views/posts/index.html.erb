@@ -1,6 +1,11 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Posts</h1>
+<% if user_signed_in? %>
+  <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+  <%= link_to "New post", new_post_path %>
+  <%= link_to "Dashboard", dashboard_path(current_user) %>
+<% else %>
+  <%= link_to "Login", new_user_session_path, class: "login-button" %>
+<% end %>
 
 <div id="posts">
   <% @posts.each do |post| %>
@@ -11,7 +16,3 @@
   <% end %>
 </div>
 
-
-<%# <div data-controller="hello"></div> %>
-
-<%= link_to "New post", new_post_path %>

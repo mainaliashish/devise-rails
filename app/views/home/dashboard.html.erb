@@ -1,0 +1,12 @@
+<h3>Welcome to Dashboard</h3>
+
+<p>Currently You have total <%= @user.posts.count %> posts.</p>
+<%= link_to "All Posts", posts_path, class: "all-post" %>
+<div id="posts">
+  <% @user.posts.each do |post| %>
+    <%= render post %>
+    <p>
+      <%= link_to "Show this post", post %>
+    </p>
+  <% end %>
+</div>
