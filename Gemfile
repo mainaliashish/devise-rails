@@ -57,6 +57,7 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
@@ -69,4 +70,21 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+end
+
+# Added by user
+gem 'cancancan'
+gem 'carrierwave', '~> 2.0'
+gem 'devise'
+gem 'friendly_id', '~> 5.4.0'
+gem 'mini_magick'
+gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
+gem 'rolify'
+
+group :development do
+  gem 'better_errors'
+  gem 'hirb-unicode'
+  gem 'pry'
 end

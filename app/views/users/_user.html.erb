@@ -1,0 +1,33 @@
+<div id="users">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Roles</th>
+        <th>Username</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td><%= user.full_name %></td>
+        <td><%= user.email %></td>
+        <td>
+        <%= user.roles_name %>
+        </td>
+        <td><%= user.username %></td> 
+        <td>
+          <% if can? :edit, user %>
+            <%= link_to 'Edit', edit_user_path(user) %>
+          <% end %>
+          <% if can? :delete, user %>
+           <%= link_to 'Delete', user, data: { turbo_method: :delete } %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
